@@ -42,10 +42,8 @@ fn main() {
             }
         };
         
-        let char_locations = word
-            .match_indices(guess)
-            .into_iter();
-
+        let char_locations = word.match_indices(guess);
+        
         let mut correct = false;
         
         for (i, _) in char_locations {
