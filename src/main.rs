@@ -41,12 +41,13 @@ fn main() {
                 guess
             }
         };
+        
+        let mut char_locations = word
+            .match_indices(guess)
+            .map(|(i, _)| i)
+            .peekable();
 
-        let char_locations: Vec<_> = word.match_indices(guess)
-            .map(|(i, _) | i)
-            .collect();
-
-        if char_locations.len() > 0 {
+        if char_locations.peek().is_some() {
             println!("Correct!");
 
             for idx in char_locations {
