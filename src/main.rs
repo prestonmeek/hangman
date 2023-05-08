@@ -42,17 +42,19 @@ fn main() {
             }
         };
         
-        let mut char_locations = word
+        let char_locations = word
             .match_indices(guess)
-            .map(|(i, _)| i)
-            .peekable();
+            .into_iter();
 
-        if char_locations.peek().is_some() {
+        let mut correct = false;
+        
+        for (i, _) in char_locations {
+            guess_template[i] = guess;
+            correct = true;
+        }
+
+        if correct {
             println!("Correct!");
-
-            for idx in char_locations {
-                guess_template[idx] = guess;
-            }
 
             if !guess_template.contains(&'_') {
                 println!("You win! The word was {}", word);
